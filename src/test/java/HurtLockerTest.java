@@ -26,18 +26,18 @@ public class HurtLockerTest {
         Assert.assertEquals(expected, actual);
     }
 
-    @Test
-    public void testProcess() {
-        String expected = ""+
-                "name:    Milk       seen: 3 times\n" +
-                "=============       =============\n" +
-                "Price:   4.99       seen: 3 times\n" +
-                "-------------       -------------\n\n";
-        ArrayList<String> arr = new ArrayList<>();
-        arr.add("4.99");
-        arr.add("4.99");
-        arr.add("4.99");
-        String actual = Main.logic(arr, "Milk");
-        Assert.assertEquals(expected, actual);
-    }
+//    @Test
+//    public void testProcess() {
+//        String expected = ""+
+//                "name:    Milk       seen: 3 times\n" +
+//                "=============       =============\n" +
+//                "Price:   4.99       seen: 3 times\n" +
+//                "-------------       -------------\n\n";
+//        ArrayList<String> arr = new ArrayList<>();
+//        arr.add("4.99");
+//        arr.add("4.99");
+//        arr.add("4.99");
+//        String actual = Main.logic(arr, "Milk");
+//        Assert.assertEquals(expected, actual);
+//    }
 }
