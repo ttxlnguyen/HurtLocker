@@ -4,9 +4,9 @@ import java.util.*;
 public class HurtLockerTest {
 
     @Test
-    public void testGetList() {
+    public void testReturnList() {
         int expected = 5;
-        String s = "xxxxx";
+        String s = "name:x;price:1.11;name:x;price:2.22;name:x;price:3.33;name:x;price:4.44;name:x;price:5.55;";
         List<String> list = Main.returnList("x", s);
         int actual = list.size();
         Assert.assertEquals(actual, expected);

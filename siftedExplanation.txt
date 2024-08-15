@@ -97,6 +97,12 @@ https://school.zipcode.rocks/student/docs?id=1177
 collects results from the stream into a List<String>, Collectors.toList() is a utility that gathers the elements of the steam into a list
 https://school.zipcode.rocks/student/docs?id=1177
 
+//
+//
+//
+//
+//
+
 **********************************************
 *                 logic Logic                *
 **********************************************
@@ -125,8 +131,52 @@ list.size() returns the number of elements in the list, representing how many it
 "Price: %s": Placeholder %s is replaced by the unique item m.
 "seen: %d times": Placeholder %d is replaced by the frequency of the item m in the original list, using Collections.frequency(list, m).
 Collections.frequency(list, m) returns the number of times the element m appears in the list.
+https://school.zipcode.rocks/student/docs?id=1177
 
 ===============================================
 
 return sb.append("\n").toString();
 converts back to string after appending a newline to object "sb"
+
+//
+//
+//
+//
+//
+
+**********************************************
+*                 main Logic                 *
+**********************************************
+
+Arrays.stream(foodItem).forEach(p->sb.append(logic(returnList(p, output), p)));
+sb.append("Errors        	 	 seen: " +Pattern.compile("[:@^*%;][:@^*%;]", Pattern.CASE_INSENSITIVE).matcher(output).results().count() +" times");
+
+===============================================
+
+                        |                       |         |
+Arrays.stream(foodItem) | .forEach(p->sb.append | (logic( | returnList(p, output), p)));
+                        |                       |         |
+
+Arrays.stream(foodItem)
+converts foodItem array into a Stream
+
+.forEach(p->sb.append(logic(returnList(p, output), p))
+lambda expression defines the action to be performed on each element p of the stream. It takes p as input and processes it using the logic method, then appends the result to the StringBuilder sb
+
+logic(returnList(p, output), p)
+calls the logic method with two arguments: the List<String> from returnList(p, output) and the current element p, the logic method processes these inputs and returns a String
+
+(returnList(p, output)
+Calls the returnList method with p (an element from the foodItem array) and output (a String), method is expected to return a List<String> based on logic method involving p and output
+
+===============================================
+
+                                                                      |
+sb.append("Errors        	 	 seen: " +Pattern.compile("[:;][:;]", | Pattern.CASE_INSENSITIVE).matcher(output).results().count() +" times");
+                                                                      |
+
+Pattern.compile("[:;][:;]", Pattern.CASE_INSENSITIVE)
+compiles the given regex into a 'Pattern' object
+
+[:;][:;]
+this is what checks for errors, counts the number of occurrences of a pattern in the output string and appends this (string)number to sb

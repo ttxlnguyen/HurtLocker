@@ -6,14 +6,14 @@ import java.util.*;
 
 
 public class Main {
-    static String[] foodItem = {"Milk", "Apples", "Bread", "Cookie"};
+    static String[] foodItem = {"Milk", "Bread", "Cookies", "Apples"};
 
     public static String formatting(String foodItem) {
         return " ".repeat(8-foodItem.length()) + foodItem;
     }
 
     public static List<String> returnList(String foodItem, String compileMatcherMapStream) {
-        return Pattern.compile("(?i)(?<=name:"+foodItem.charAt(0)+".{"+(foodItem.length() - 1)+"};price[:])[0-9].[0-9][0-9]+(?=;)").matcher(compileMatcherMapStream).results().map((m) -> m.group()).collect(Collectors.toList());
+        return Pattern.compile("(?i)(?<=name:"+foodItem.charAt(0)+".{"+(foodItem.length() - 1)+"};price:)[0-9].[0-9][0-9]+(?=;)").matcher(compileMatcherMapStream).results().map((m) -> m.group()).collect(Collectors.toList());
     }
 
     public static String logic(List<String> list, String foodItem) {
@@ -30,6 +30,9 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         String output = (new Main()).readRawDataToString();
-        System.out.println(output);
+        StringBuilder sb = new StringBuilder();
+        Arrays.stream(foodItem).forEach(p->sb.append(logic(returnList(p, output), p)));
+        sb.append("Errors              seen: " +Pattern.compile("[:;][:;]", Pattern.CASE_INSENSITIVE).matcher(output).results().count() +" times");
+        System.out.println(sb);
     }
 }
