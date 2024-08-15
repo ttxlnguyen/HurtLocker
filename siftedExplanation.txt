@@ -87,7 +87,7 @@ creates a "Matcher" object for the given input string "compileMatcherMapStream" 
 https://school.zipcode.rocks/student/docs?id=1380
 
 .results()
-method returns a "Stream<MatchResul>" of all matches found. Each "MatchResult" represents a successful match of the pattern in the input string
+method returns a "Stream<MatchResult>" of all matches found. Each "MatchResult" represents a successful match of the pattern in the input string
 
 .map((m) -> m.group())
 operation transforms each "MatchResult" from .results() in the stream to be matched substring "m.group()", the ".group()" method of 'MatchResult' returns the actual text that matched the pattern.
@@ -96,4 +96,37 @@ https://school.zipcode.rocks/student/docs?id=1177
 .collect(Collectors.toList());
 collects results from the stream into a List<String>, Collectors.toList() is a utility that gathers the elements of the steam into a list
 https://school.zipcode.rocks/student/docs?id=1177
+
+**********************************************
+*                 logic Logic                *
+**********************************************
+
+StringBuilder sb = new StringBuilder("name:"+ formatting(foodItem)+"       seen: " +list.size()+ " times\n=============       =============\n");
+(new HashSet<>(list)).stream().forEach((m)->{sb.append(String.format("Price:   %s       seen: %d times\n-------------       -------------\n",m, Collections.frequency(list, m)));});
+return sb.append("\n").toString();
+
 ===============================================
+
+                                                                                     |
+StringBuilder sb = new StringBuilder("name:"+ formatting(foodItem)+"       seen: " + | list.size()+ " times\n=============       =============\n");
+                                                                                     |
+
+formatting(foodItem) calls the formatting method, result from the formatting method will concat with "name:"
+list.size() returns the number of elements in the list, representing how many items are in it
+
+===============================================
+
+                      |           |                                          |                                                                           |
+(new HashSet<>(list)) | .stream() | .forEach((m)->{sb.append(String.format(" | Price:   %s       seen: %d times\n-------------       -------------\n",m, | Collections.frequency(list, m)));});
+                      |           |                                          |                                                                           |
+
+.stream() converts the HashSet to a Stream, allows functional-style operations to be performed on the elements.
+.forEach((m) -> { ... }) iterates over each unique item (m) in the stream. The lambda expression (m) -> { ... } specifies the actions to perform for each item.
+"Price: %s": Placeholder %s is replaced by the unique item m.
+"seen: %d times": Placeholder %d is replaced by the frequency of the item m in the original list, using Collections.frequency(list, m).
+Collections.frequency(list, m) returns the number of times the element m appears in the list.
+
+===============================================
+
+return sb.append("\n").toString();
+converts back to string after appending a newline to object "sb"
