@@ -40,4 +40,21 @@ public class HurtLockerTest {
         String actual = Main.logic(arr, "Milk");
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void testLogic2() {
+        String expected = ""+
+                "name: Cookies       seen: 5 times\n" +
+                "=============       =============\n" +
+                "Price:   3.99       seen: 5 times\n" +
+                "-------------       -------------\n\n";
+        ArrayList<String> arr = new ArrayList<>();
+        arr.add("3.99");
+        arr.add("3.99");
+        arr.add("3.99");
+        arr.add("3.99");
+        arr.add("3.99");
+        String actual = Main.logic(arr, "Cookies");
+        Assert.assertEquals(expected, actual);
+    }
 }
